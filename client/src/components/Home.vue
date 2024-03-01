@@ -309,7 +309,7 @@
         </router-link>
       </div>
     </section>
-    <section class="bg-gray-300 mb-14">
+    <section class="bg-gray-300">
       <div
         class="gap-16 items-center py-2 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6 mt-10"
       >
@@ -332,6 +332,37 @@
             :src="Promoteur"
             alt="office content 2"
           />
+        </div>
+      </div>
+    </section>
+    <section class="">
+      <div class="bg-[#F71735] bg-opacity-15 py-10">
+        <div class="text-center">
+          <h3 class="text-4xl font-bold mb-4">Newsletter</h3>
+          <span class="text-xl"
+            >Restez informé de toutes les actualités et de tous nos évènements.</span
+          >
+          <div class="mt-5">
+            <form action="">
+              <div class="max-width-sm mx-20 grid gap-6 mb-6 md:grid-cols-2">
+                <div class="col-lg-4">
+                  <input
+                    type="text"
+                    id="first_name"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="John"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center"
+                >
+                  Souscrire
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
