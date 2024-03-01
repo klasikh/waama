@@ -5,7 +5,7 @@ import HelloWorld from "./components/HelloWorld.vue";
 <template>
   <div>
     <header>
-      <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
+      <nav class="bg-white border-gray-200 px-4 lg:px-6 py-5">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <router-link to="/" class="flex items-center">
             <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" /> -->
@@ -51,33 +51,30 @@ import HelloWorld from "./components/HelloWorld.vue";
               </svg>
             </button>
           </div>
-          <div
-            class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1 flot-right"
-            id="mobile-menu-2"
-          >
+          <div class="hidden w-full lg:flex lg:w-auto float-right" id="mobile-menu-2">
             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
               <li>
                 <router-link
-                  to="#"
+                  to="/actuality"
                   class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:border-0 lg:hover:text-primary-700 lg:p-0"
                   >Actualités culturelles</router-link
                 >
               </li>
               <li>
                 <router-link
-                  to="#"
+                  to="/calendar"
                   class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:border-0 lg:hover:text-primary-700 lg:p-0"
                   >Calendrier evènementiel</router-link
                 >
               </li>
               <li>
                 <router-link
-                  to="#"
+                  to="/biblio"
                   class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:border-0 lg:hover:text-primary-700 lg:p-0"
                   >Bibliothèque culturelle</router-link
                 >
               </li>
-              <li>
+              <!-- <li>
                 <router-link
                   to="#"
                   class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:border-0 lg:hover:text-primary-700 lg:p-0"
@@ -90,7 +87,7 @@ import HelloWorld from "./components/HelloWorld.vue";
                   class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:border-0 lg:hover:text-primary-700 lg:p-0"
                   >S'incrire</router-link
                 >
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>

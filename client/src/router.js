@@ -1,5 +1,8 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "./components/Home.vue";
+import Biblio from "./components/Biblio.vue";
+import Calendar from "./components/Calendar.vue";
+import Actuality from "./components/Actuality.vue";
 // lazy-loaded
 const BoardAdmin = () => import("./components/BoardAdmin.vue")
 const BoardModerator = () => import("./components/BoardModerator.vue")
@@ -12,8 +15,20 @@ const routes = [
     component: Home,
   },
   {
-    path: "/home",
-    component: Home,
+    path: "/actuality",
+    name: "actuality",
+    component: Actuality,
+  },
+  
+  {
+    path: "/biblio",
+    name: "biblio",
+    component: Biblio,
+  },
+  {
+    path: "/calendar",
+    name: "calendar",
+    component: Calendar,
   },
   {
     path: "/admin",

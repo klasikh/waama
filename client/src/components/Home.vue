@@ -47,7 +47,7 @@
         </div>
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
           <img :src="Hero1" alt="mockup" />
-          <img :src="HeroMask" alt="mockup" class="hero-mask" />
+          <!-- <img :src="HeroMask" alt="mockup" class="hero-mask" /> -->
           <img :src="Hero2" alt="mockup" class="hero2-style" />
         </div>
       </div>
