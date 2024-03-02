@@ -1,7 +1,52 @@
-# Vue 3 + Vite
+# V-Dashboard
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Dashboard starter template built with Vite, Vue 3, Tailwind CSS and TypeScript.
 
-## Recommended IDE Setup
+Copied from https://github.com/tailwindcomponents/dashboard and converted to Vue.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Demo
+
+https://v-dashboard.vercel.app/
+
+![Demo](https://i.imgur.com/RqXxEHL.gif)
+
+Note if you have access to [Tailwind UI](https://tailwindui.com), you can follow the following steps to add it:
+
+1. Install `@tailwindcss/ui`:
+
+```sh
+pnpm add @tailwindcss/ui
+```
+
+2. Add the plugin in `tailwind.config.js` without changing anything else:
+
+```js
+// tailwind.config.js
+module.exports = {
+  // ...
+  // rest of the config
+  plugins: [require('@tailwindcss/ui')],
+}
+```
+
+## Project setup
+
+```
+pnpm install
+```
+
+### Compiles and hot-reloads for development
+
+```
+pnpm dev
+```
+
+### Compiles and minifies for production
+
+```
+pnpm build
+```
+
+## License & copyright
+
+Licensed under the [MIT License](LICENSE.md).

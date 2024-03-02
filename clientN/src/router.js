@@ -19,7 +19,6 @@ const routes = [
     name: "actuality",
     component: Actuality,
   },
-  
   {
     path: "/biblio",
     name: "biblio",

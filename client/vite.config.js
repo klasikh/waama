@@ -6,6 +6,11 @@ import { fileURLToPath } from 'url'
 export default defineConfig({
   plugins: [vue()],
   define: {
+    'process.env': {
+      APP_MODE: 'dev',
+      BACKEND_URL: 'http://localhost:8080/api',
+      // BACKEND_URL: 'https://tfu-server.onrender.com/',
+    }
   },
   resolve: {
     alias: {

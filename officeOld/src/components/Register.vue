@@ -26,10 +26,7 @@
 
           <div class="form-group">
             <button class="btn btn-primary btn-block" :disabled="loading">
-              <span
-                v-show="loading"
-                class="spinner-border spinner-border-sm"
-              ></span>
+              <span v-show="loading" class="spinner-border spinner-border-sm"></span>
               Sign Up
             </button>
           </div>
@@ -108,9 +105,7 @@ export default {
         },
         (error) => {
           this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
+            (error.response && error.response.data && error.response.data.message) ||
             error.message ||
             error.toString();
           this.successful = false;
