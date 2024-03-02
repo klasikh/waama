@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.5",
+    "@babel/types": "^7.24.0",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue/compiler-sfc": "^3.3.4",
     "autoprefixer": "^10.4.14",
