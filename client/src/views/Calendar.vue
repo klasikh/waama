@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import Culture from "@/assets/images/culture.png";
 </script>
 

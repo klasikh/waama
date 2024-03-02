@@ -369,8 +369,8 @@
   </div>
 </template>
 
-<script>
-import UserService from "../services/user.service";
+<script setup lang="ts">
+import UserService from "@/services/user.service";
 import Hero1 from "@/assets/images/hero1.png";
 import Hero2 from "@/assets/images/hero2.png";
 import HeroMask from "@/assets/images/hero-mask.png";
