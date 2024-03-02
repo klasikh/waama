@@ -18,13 +18,16 @@ const route = useRoute();
 const store = useStore();
 const $toast = useToast();
 
-let actualities = ref([]);
+let actualities: any[] = [];
+// interface actualities {
+//   image: string;
+// }
 
 function getAllActualities() {
   ActualityService.getAll()
     .then((response: ResponseData) => {
       console.log(response.data);
-      actualities.value = response.data;
+      actualities = response.data;
     })
     .catch((e: Error) => {
       console.log(e);

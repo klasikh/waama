@@ -379,34 +379,18 @@ import Festi1 from "@/assets/images/festi1.png";
 import Festi2 from "@/assets/images/festi2.png";
 import Promoteur from "@/assets/images/promoteur.png";
 
-export default {
-  name: "Home",
-  data() {
-    return {
-      content: "",
-      Hero1,
-      Hero2,
-      HeroMask,
-      Culture,
-      Festi1,
-      Festi2,
-      Promoteur,
-    };
-  },
-  mounted() {
-    UserService.getPublicContent().then(
-      (response) => {
-        this.content = response.data;
-      },
-      (error) => {
-        this.content =
-          (error.response && error.response.data && error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
-  },
-};
+//   UserService.getPublicContent().then(
+//     (response) => {
+//       this.content = response.data;
+//     },
+//     (error) => {
+//       this.content =
+//         (error.response && error.response.data && error.response.data.message) ||
+//         error.message ||
+//         error.toString();
+//     }
+//   );
+// },
 </script>
 <style scoped>
 .hero-mask {

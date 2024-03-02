@@ -9,7 +9,17 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "allowJs": true
+    "allowJs": true,
+    "baseUrl": ".",
+
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue",],
+  "paths": {
+    "@/*": [
+      "./src/*",
+    ]
+  },
 }
