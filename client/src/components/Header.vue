@@ -5,7 +5,7 @@
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useSidebar } from "../composables/useSidebar";
-import Toast from "@/plugins/Toast/Toast";
+import Toast from "../plugins/Toast/Toast";
 
 // GLOBAL CONST
 const router = useRouter();

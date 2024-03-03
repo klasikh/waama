@@ -46,9 +46,9 @@
           </svg>
         </div>
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-          <img :src="Hero1" alt="mockup" />
+          <img src="../assets/images/hero1.png" alt="mockup" />
           <!-- <img :src="HeroMask" alt="mockup" class="hero-mask" /> -->
-          <img :src="Hero2" alt="mockup" class="hero2-style" />
+          <img src="../assets/images/hero2.png" alt="mockup" class="hero2-style" />
         </div>
       </div>
     </section>
@@ -59,7 +59,7 @@
         <div class="grid gap-4 mt-10">
           <img
             class="mt-4 w-full lg:mt-10 rounded-lg"
-            :src="Culture"
+            scr="../assets/images/culture.png"
             alt="office content 2"
           />
         </div>
@@ -90,7 +90,7 @@
           class="max-w-sm bg-white border border-gray-200 rounded-lg shadow md:mx-auto md:mb-5"
         >
           <a href="#">
-            <img class="rounded-t-lg" :src="Culture" alt="" />
+            <img class="rounded-t-lg" scr="../assets/images/culture.png" alt="" />
           </a>
           <div class="p-5">
             <a href="#">
@@ -132,7 +132,7 @@
           class="max-w-sm bg-white border border-gray-200 rounded-lg shadow md:mx-auto md:mb-5"
         >
           <a href="#">
-            <img class="rounded-t-lg" :src="Culture" alt="" />
+            <img class="rounded-t-lg" scr="../assets/images/culture.png" alt="" />
           </a>
           <div class="p-5">
             <a href="#">
@@ -174,7 +174,7 @@
           class="max-w-sm bg-white border border-gray-200 rounded-lg shadow md:mx-auto md:mb-5"
         >
           <a href="#">
-            <img class="rounded-t-lg" :src="Culture" alt="" />
+            <img class="rounded-t-lg" scr="../assets/images/culture.png" alt="" />
           </a>
           <div class="p-5">
             <a href="#">
@@ -253,7 +253,7 @@
         <div class="font-light text-gray-500 sm:text-lg">
           <img
             class="mt-4 w-full lg:mt-10 rounded-lg text-center lg:float-right"
-            :src="Festi1"
+            src="../assets/images/festi1.png"
             alt="office content 2"
             style="width: 70%"
           />
@@ -265,7 +265,7 @@
         <div class="font-light text-gray-500 sm:text-lg">
           <img
             class="mt-4 w-full lg:mt-10 rounded-lg text-center lg:float-left"
-            :src="Festi2"
+            src="../assets/images/festi2.png"
             alt="office content 2"
             style="width: 70%"
           />
@@ -329,7 +329,7 @@
         <div class="grid gap-4 mt-10">
           <img
             class="mt-4 w-full lg:mt-10 rounded-lg"
-            :src="Promoteur"
+            src="../assets/images/promoteur.png"
             alt="office content 2"
           />
         </div>
@@ -370,14 +370,12 @@
 </template>
 
 <script setup lang="ts">
-import UserService from "../services/user.service";
-import Hero1 from "../assets/images/hero1.png";
-import Hero2 from "../assets/images/hero2.png";
-import HeroMask from "../assets/images/hero-mask.png";
-import Culture from "../assets/images/culture.png";
-import Festi1 from "../assets/images/festi1.png";
-import Festi2 from "../assets/images/festi2.png";
-import Promoteur from "../assets/images/promoteur.png";
+// import Hero1 from "../assets/images/hero1.png";
+// import Hero2 from "../assets/images/hero2.png";
+// import HeroMask from "../assets/images/hero-mask.png";
+// import Festi1 from "../assets/images/festi1.png";
+// import Festi2 from "../assets/images/festi2.png";
+// import Promoteur from "../assets/images/promoteur.png";
 </script>
 <style scoped>
 .hero-mask {

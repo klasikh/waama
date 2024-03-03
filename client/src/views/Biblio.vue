@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Culture from "@/assets/images/culture.png";
+// import Culture from "@/assets/images/culture.png";
 </script>
 
 <template>
@@ -41,7 +41,7 @@ import Culture from "@/assets/images/culture.png";
           class="max-w-sm bg-white border border-gray-200 rounded-lg shadow md:mx-auto md:mb-5"
         >
           <a href="#">
-            <img class="rounded-t-lg" :src="Culture" alt="" />
+            <img class="rounded-t-lg" src="../assets/images/culture.png" alt="" />
           </a>
           <div class="p-5">
             <a href="#">
@@ -56,7 +56,7 @@ import Culture from "@/assets/images/culture.png";
           class="max-w-sm bg-white border border-gray-200 rounded-lg shadow md:mx-auto md:mb-5"
         >
           <a href="#">
-            <img class="rounded-t-lg" :src="Culture" alt="" />
+            <img class="rounded-t-lg" src="../assets/images/culture.png" alt="" />
           </a>
           <div class="p-5">
             <a href="#">
@@ -71,7 +71,7 @@ import Culture from "@/assets/images/culture.png";
           class="max-w-sm bg-white border border-gray-200 rounded-lg shadow md:mx-auto md:mb-5"
         >
           <a href="#">
-            <img class="rounded-t-lg" :src="Culture" alt="" />
+            <img class="rounded-t-lg" src="../assets/images/culture.png" alt="" />
           </a>
           <div class="p-5">
             <a href="#">
