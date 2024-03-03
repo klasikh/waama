@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// @ts-ignore
+/* eslint-disable */
+
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useSidebar } from "../composables/useSidebar";

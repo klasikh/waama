@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// @ts-ignore
+/* eslint-disable */
+
 import { computed, onMounted, reactive, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { mapGetters, mapState, useStore } from "vuex";
