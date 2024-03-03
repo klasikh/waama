@@ -6,7 +6,7 @@ import App from './App.vue'
 import router from './router'
 import './assets/main.css'
 import store from "./store";
-import { FontAwesomeIcon } from '@/plugins/font-awesome'
+import { FontAwesomeIcon } from './plugins/font-awesome'
 
 import DashboardLayout from '@/components/DashboardLayout.vue'
 import EmptyLayout from '@/components/EmptyLayout.vue'
