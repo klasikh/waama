@@ -4,10 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 import { mapGetters, mapState, useStore } from "vuex";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
-// import Toast from "@/plugins/Toast/Toast";
-
-import { useToast } from "vue-toast-notification";
-import "vue-toast-notification/dist/theme-sugar.css";
+import Toast from "@/plugins/Toast/Toast";
 
 import ActualityService from "@/services/actuality.service";
 import ResponseData from "@/types/ResponseData";
@@ -16,26 +13,61 @@ import ResponseData from "@/types/ResponseData";
 const router = useRouter();
 const route = useRoute();
 const store = useStore();
-const $toast = useToast();
 
 // const error = computed(() => store.state.auth.error);
 const actionLogin = (login: any) => store.dispatch("auth/login", login);
 
+const title = ref("");
+const description = ref("");
 let loading = ref(false);
 let message = ref("");
+const imageUrl = ref();
+const imageFile = ref();
 
-const schema = yup.object().shape({
-  title: yup.string().required("Champ obligatoire"),
-  description: yup.string().required("Champ obligatoire"),
-  image: yup.string().required("Champ obligatoire"),
-});
+const onFilePicked = (event: any) => {
+  const files = event.target.files;
+  let filename = files[0].name;
+  const fileReader = new FileReader();
+  fileReader.addEventListener("load", () => {
+    imageUrl.value = fileReader.result;
+  });
+  fileReader.readAsDataURL(files[0]);
+  imageFile.value = files[0];
+};
 
-function saveActuality(data: any) {
-  ActualityService.create(data)
+function saveActuality(e: any) {
+  const formData = new FormData();
+  formData.append("title", title.value);
+  formData.append("description", description.value);
+  formData.append("file", imageFile.value);
+
+  // const config = {
+  //   headers: {
+  //     "Content-Type": "multipart/form-data",
+  //   },
+  // };
+  e.preventDefault();
+
+  ActualityService.create(formData)
     .then((response: ResponseData) => {
-      router.push("/actualities-list");
+      // console.log(response);
+      if (response.data.actu.id) {
+        Toast.fire({
+          icon: "success",
+          title: response.data.message,
+          position: "top-right",
+        });
+
+        router.push("/actualities-list");
+      }
     })
     .catch((e: Error) => {
+      Toast.fire({
+        icon: "error",
+        title: "Une erreur s'est produite",
+        position: "top-right",
+      });
+
       console.log(e);
     });
 }
@@ -67,16 +99,18 @@ function saveActuality(data: any) {
             <div class="p-6 bg-white rounded-md shadow-md">
               <h2 class="text-lg font-semibold text-gray-700">Ajouter une actualité</h2>
 
-              <Form @submit="saveActuality" :validation-schema="schema">
+              <form method="POST" enctype="multipart/form-data" @submit="saveActuality">
                 <div class="">
                   <div>
                     <label class="text-gray-700" for="username"
                       >Titre <span class="text-red-500">*</span></label
                     >
-                    <Field
+                    <input
                       name="title"
+                      v-model="title"
                       class="w-full mt-2 border-gray-200 rounded-md border-gray-300 focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
                       type="text"
+                      required
                     />
                     <ErrorMessage name="title" class="error-feedback text-red-500" />
                   </div>
@@ -85,34 +119,33 @@ function saveActuality(data: any) {
                     <label class="text-gray-700" for="emailAddress"
                       >Description <span class="text-red-500">*</span></label
                     >
-                    <Field
+                    <textarea
                       name="description"
+                      v-model="description"
                       cols="40"
                       rows="5"
                       class="w-full mt-2 border-gray-200 rounded-md border-gray-300 focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
                       style="height: 150px"
-                    />
+                      required
+                    ></textarea>
                     <ErrorMessage
                       name="description"
                       class="error-feedback text-red-500"
                     />
-                    <!-- <Field
-                      name="description"
-                      class="w-full mt-2 border-gray-200 rounded-md focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
-                      type="textarea"
-                    /> -->
                   </div>
 
                   <div class="mt-4">
                     <label class="text-gray-700" for="password"
                       >Image de couverture <span class="text-red-500">*</span></label
                     >
-                    <Field
-                      name="image"
+                    <input
+                      name="file"
                       class="w-full mt-2 border-gray-200 rounded-md border-gray-300 focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
                       type="file"
+                      @change="onFilePicked"
+                      required
                     />
-                    <ErrorMessage name="image" class="error-feedback text-red-500" />
+                    <ErrorMessage name="file" class="error-feedback text-red-500" />
                   </div>
                 </div>
 
@@ -124,7 +157,7 @@ function saveActuality(data: any) {
                     Enregister
                   </button>
                 </div>
-              </Form>
+              </form>
             </div>
           </div>
         </div>

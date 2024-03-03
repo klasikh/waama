@@ -1,6 +1,6 @@
 const fs = require("fs");
 const db = require("../models");
-const Actuality = db.actuality;
+const Cadre = db.cadre;
 
 exports.create = (req, res, next) => {
   // Validate request
@@ -11,13 +11,13 @@ exports.create = (req, res, next) => {
   } 
 
     if (req.file == undefined) {
-      return res.send(`Vous devez ajouter un fichier`);
+      return res.send(`Vous devez ajouter une photo du cadre`);
     }
 
-  // Save Actuality to Database
-  Actuality.create({
-    title: req.body.title,
-    description: req.body.description,
+  // Save Cadre to Database
+  Cadre.create({
+    name: req.body.name,
+    workFunc: req.body.workFunc,
     imageType: req.file.mimetype,
     imageName: req.file.originalname,
     imageData: fs.readFileSync(
@@ -31,7 +31,7 @@ exports.create = (req, res, next) => {
       //   response.data
       // );
       if (response) {
-        res.send({ actu: response, message: "Actualité ajoutée avec succès!" });
+        res.send({ actu: response, message: "Cadre ajouté avec succès!" });
       }
     })
     .catch(err => {
@@ -41,9 +41,9 @@ exports.create = (req, res, next) => {
 
 // Retrieve all Actualities from the database (with condition).
 exports.findAll = (req, res) => {
-  // const title = req.query.title;
+  // const name = req.query.name;
 
-  Actuality.findAll().then(response => {
+  Cadre.findAll().then(response => {
     // console.log(response)
     if (response) {
       res.send(response);
@@ -54,9 +54,9 @@ exports.findAll = (req, res) => {
   });
 };
 
-// Find a single Actuality by Id
+// Find a single Cadre by Id
 exports.findOne = (req, res) => {
-  Actuality.findOne({ 
+  Cadre.findOne({ 
     where: { id: req.params.id } 
   })
   .then(response => {
@@ -66,7 +66,7 @@ exports.findOne = (req, res) => {
   });
 };
 
-// Update a Actuality identified by the id in the request
+// Update a Cadre identified by the id in the request
 exports.update = (req, res) => {
   // Validate Request
   if (!req.body) {
@@ -77,9 +77,9 @@ exports.update = (req, res) => {
 
   if (req.file == undefined) {
 
-    Actuality.update({
-      title: req.body.title,
-      description: req.body.description,
+    Cadre.update({
+      name: req.body.name,
+      workFunc: req.body.workFunc,
     }, {
       where: {
         id: req.params.id,
@@ -87,7 +87,7 @@ exports.update = (req, res) => {
     })
       .then(response => {
         if (response) {
-          res.send({ actu: response, message: "Actualité modifiée avec succès!" });
+          res.send({ actu: response, message: "Cadre modifié avec succès!" });
         }
       })
       .catch(err => {
@@ -96,9 +96,9 @@ exports.update = (req, res) => {
 
   } else {
 
-    Actuality.update({
-      title: req.body.title,
-      description: req.body.description,
+    Cadre.update({
+      name: req.body.name,
+      workFunc: req.body.workFunc,
       imageType: req.file.mimetype,
       imageName: req.file.originalname,
       imageData: fs.readFileSync(
@@ -111,7 +111,7 @@ exports.update = (req, res) => {
     })
       .then(response => {
         if (response) {
-          res.send({ actu: response, message: "Actualité modifiée avec succès!" });
+          res.send({ actu: response, message: "Cadre modifié avec succès!" });
         }
       })
       .catch(err => {
@@ -121,16 +121,16 @@ exports.update = (req, res) => {
 
 };
 
-// Delete a Actuality with the specified id in the request
+// Delete a Cadre with the specified id in the request
 exports.delete = (req, res) => {
-  Actuality.destroy({
+  Cadre.destroy({
     where: {
       id: req.params.id,
     }
   })
   .then(response => {
     if (response) {
-      res.send({ actu: response, message: "Actualité supprimée avec succès!" });
+      res.send({ actu: response, message: "Cadre supprimé avec succès!" });
     }
   })
   .catch(err => {
@@ -138,14 +138,14 @@ exports.delete = (req, res) => {
   });
 };
 
-// Delete all Actualitys from the database.
+// Delete all Cadres from the database.
 exports.deleteAll = (req, res) => {
-  Actuality.truncate((err, data) => {
+  Cadre.truncate((err, data) => {
     if (err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while removing all tutorials."
       });
-    else res.send({ message: `All Actualitys were deleted successfully!` });
+    else res.send({ message: `All Cadres were deleted successfully!` });
   });
 };

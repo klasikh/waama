@@ -4,7 +4,8 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:5173"
+  origin: "http://localhost:5173",
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -13,14 +14,14 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true, }));
 
 // database
 const db = require("./app/models");
 const Role = db.role;
-
+ 
 db.sequelize.sync();
-// force: true will drop the table if it already exists
+// // force: true will drop the table if it already exists
 // db.sequelize.sync({force: false}).then(() => {
 //   console.log('Drop and Resync Database with { force: false }');
 //   initial();
@@ -28,16 +29,18 @@ db.sequelize.sync();
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to Waama app server." });
 });
 
 // routes
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/actuality.routes')(app);
+require('./app/routes/event.routes')(app);
+require('./app/routes/cadre.routes')(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080; 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

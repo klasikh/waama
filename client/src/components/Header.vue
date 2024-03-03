@@ -1,9 +1,20 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useSidebar } from "../composables/useSidebar";
+import Toast from "@/plugins/Toast/Toast";
+
+// GLOBAL CONST
+const router = useRouter();
 
 const dropdownOpen = ref(false);
 const { isOpen } = useSidebar();
+
+async function logout() {
+  localStorage.removeItem("user");
+  Toast.fire({ icon: "error", title: "Déconnecté avec succès!", position: "top-right" });
+  router.push("/office");
+}
 </script>
 
 <template>
@@ -108,12 +119,12 @@ const { isOpen } = useSidebar();
               class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
               >Products</a
             > -->
-            <router-link
-              to="/"
+            <button
+              @click="logout"
               class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
             >
               Se déconnecter
-            </router-link>
+            </button>
           </div>
         </transition>
       </div>

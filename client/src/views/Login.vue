@@ -4,16 +4,12 @@ import { useRoute, useRouter } from "vue-router";
 import { mapGetters, mapState, useStore } from "vuex";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
-// import Toast from "@/plugins/Toast/Toast";
-
-import { useToast } from "vue-toast-notification";
-import "vue-toast-notification/dist/theme-sugar.css";
+import Toast from "@/plugins/Toast/Toast";
 
 // GLOBAL CONST
 const router = useRouter();
 const route = useRoute();
 const store = useStore();
-const $toast = useToast();
 
 // const error = computed(() => store.state.auth.error);
 const actionLogin = (login: any) => store.dispatch("auth/login", login);
@@ -28,9 +24,15 @@ const schema = yup.object().shape({
 
 function handleLogin(user: any) {
   loading.value = true;
+  console.log(user);
 
   actionLogin(user).then(
     () => {
+      Toast.fire({
+        icon: "success",
+        title: "Connecté avec succès!",
+        position: "top-right",
+      });
       router.push("/dashboard");
     },
     (error: any) => {

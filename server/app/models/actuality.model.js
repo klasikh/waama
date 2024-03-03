@@ -6,8 +6,14 @@ module.exports = (sequelize, Sequelize) => {
     description: {
       type: Sequelize.STRING
     },
-    image: {
-      type: Sequelize.STRING
+    imageType: {
+      type: Sequelize.STRING,
+    },
+    imageName: {
+      type: Sequelize.STRING,
+    },
+    imageData: {
+      type: Sequelize.BLOB("long"),
     },
   });
 

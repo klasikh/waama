@@ -14,20 +14,19 @@ class ActualityService {
   }
 
   create(data) {
-    console.log(API_URL)
     return axios.post(API_URL + "create", data, { headers: authHeader() });
   }
 
-  update(id){
-    return axios.put(API_URL + `update/${id}`, data, data, { headers: authHeader() });
+  update(id, data){
+    return axios.put(API_URL + `update/${id}`, data, { headers: authHeader() });
   }
 
   delete(id){
-    return axios.delete(API_URL + `delete/${id}`, data, { headers: authHeader() });
+    return axios.delete(API_URL + `delete/${id}`, { headers: authHeader() });
   }
 
   deleteAll(){
-    return axios.delete(API_URL + `delete`, data, { headers: authHeader() });
+    return axios.delete(API_URL + `delete`, { headers: authHeader() });
   }
 
   findByTitle(title){

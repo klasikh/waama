@@ -14,9 +14,23 @@ import Blank from '@/views/Blank.vue'
 import Home from "@/views/Home.vue";
 import Biblio from "@/views/Biblio.vue";
 import Calendar from "@/views/Calendar.vue";
+
 import Actuality from "@/views/Actuality.vue";
 import ActualitiesList from "@/views/Actuality/ActualitiesList.vue";
 import ActualityAdd from "@/views/Actuality/ActualityAdd.vue";
+import ActualityOne from "@/views/Actuality/ActualityOne.vue";
+import ActualityEdit from "@/views/Actuality/ActualityEdit.vue";
+
+import EventsList from "@/views/Event/EventsList.vue";
+import EventAdd from "@/views/Event/EventAdd.vue";
+import EventOne from "@/views/Event/EventOne.vue";
+import EventEdit from "@/views/Event/EventEdit.vue";
+
+import CadresList from "@/views/Cadre/CadresList.vue";
+import CadreAdd from "@/views/Cadre/CadreAdd.vue";
+import CadreOne from "@/views/Cadre/CadreOne.vue";
+import CadreEdit from "@/views/Cadre/CadreEdit.vue";
+
 import NotFoundPage from "@/views/[...all].vue";
 
 const routes: RouteRecordRaw[] = [
@@ -103,7 +117,103 @@ const routes: RouteRecordRaw[] = [
     name: 'ActualityAdd',
     component: ActualityAdd,
     meta: { 
-      title: "Office - Actualités",
+      title: "Office - Ajout d'actualité",
+      requiredAuth: true 
+    },
+  },
+  {
+    path: '/get-actuality/:id',
+    name: 'ActualityOne',
+    component: ActualityOne,
+    props: true,
+    meta: { 
+      title: "Office - Affichage d'une actualité",
+      requiredAuth: true 
+    },
+  },
+  {
+    path: '/edit-actuality/:id',
+    name: 'ActualityEdit',
+    component: ActualityEdit,
+    props: true,
+    meta: { 
+      title: "Office - Edition d'actualité",
+      requiredAuth: true 
+    },
+  },
+  {
+    path: '/events-list',
+    name: 'EventsList',
+    component: EventsList,
+    meta: { 
+      title: "Office - Evénements",
+      requiredAuth: true 
+    },
+  },
+  {
+    path: '/add-event',
+    name: 'EventAdd',
+    component: EventAdd,
+    meta: { 
+      title: "Office - Ajout d'un événement",
+      requiredAuth: true 
+    },
+  },
+  {
+    path: '/get-event/:id',
+    name: 'EventOne',
+    component: EventOne,
+    props: true,
+    meta: { 
+      title: "Office - Affichage d'une événement",
+      requiredAuth: true 
+    },
+  },
+  {
+    path: '/edit-event/:id',
+    name: 'EventEdit',
+    component: EventEdit,
+    props: true,
+    meta: { 
+      title: "Office - Edition d'un événement",
+      requiredAuth: true 
+    },
+  },
+  {
+    path: '/cadres-list',
+    name: 'CadresList',
+    component: CadresList,
+    meta: { 
+      title: "Office - Cadres",
+      requiredAuth: true 
+    },
+  },
+  {
+    path: '/add-cadre',
+    name: 'CadreAdd',
+    component: CadreAdd,
+    meta: { 
+      title: "Office - Ajout d'un cadre",
+      requiredAuth: true 
+    },
+  },
+  {
+    path: '/get-cadre/:id',
+    name: 'CadreOne',
+    component: CadreOne,
+    props: true,
+    meta: { 
+      title: "Office - Affichage d'un cadre",
+      requiredAuth: true 
+    },
+  },
+  {
+    path: '/edit-cadre/:id',
+    name: 'CadreEdit',
+    component: CadreEdit,
+    props: true,
+    meta: { 
+      title: "Office - Edition d'un cadre",
       requiredAuth: true 
     },
   },

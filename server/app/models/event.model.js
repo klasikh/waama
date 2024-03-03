@@ -1,9 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
-  const Cadres = sequelize.define("cadres", {
-    name: {
+  const Event = sequelize.define("events", {
+    title: {
       type: Sequelize.STRING
     },
-    workFunc: {
+    description: {
+      type: Sequelize.STRING
+    },
+    eventDate: {
       type: Sequelize.STRING
     },
     imageType: {
@@ -17,5 +20,5 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  return Cadres;
+  return Event;
 };

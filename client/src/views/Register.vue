@@ -4,16 +4,12 @@ import { useRoute, useRouter } from "vue-router";
 import { mapGetters, mapState, useStore } from "vuex";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
-// import Toast from "@/plugins/Toast/Toast";
-
-import { useToast } from "vue-toast-notification";
-import "vue-toast-notification/dist/theme-sugar.css";
+import Toast from "@/plugins/Toast/Toast";
 
 // GLOBAL CONST
 const router = useRouter();
 const route = useRoute();
 const store = useStore();
-const $toast = useToast();
 
 // const error = computed(() => store.state.auth.error);
 const actionLogin = (login: any) => store.dispatch("auth/register", login);
@@ -50,6 +46,12 @@ function handleRegister(user: any) {
       message.value = data.message;
       successful.value = true;
       loading.value = false;
+
+      Toast.fire({
+        icon: "success",
+        title: "Inscription effectuée avec succès!",
+        position: "top-right",
+      });
       router.push("/office");
     },
     (error: any) => {
