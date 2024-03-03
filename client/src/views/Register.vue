@@ -7,7 +7,7 @@ import { useRoute, useRouter } from "vue-router";
 import { mapGetters, mapState, useStore } from "vuex";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
-import Toast from "@/plugins/Toast/Toast";
+import Toast from "../plugins/Toast/Toast";
 
 // GLOBAL CONST
 const router = useRouter();

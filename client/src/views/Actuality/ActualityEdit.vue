@@ -20,12 +20,36 @@ const store = useStore();
 // const error = computed(() => store.state.auth.error);
 const actionLogin = (login: any) => store.dispatch("auth/login", login);
 
-const title = ref("");
-const description = ref("");
+let title = ref("");
+let description = ref("");
+let imageType = ref("");
+let imageBuffer = ref("");
 let loading = ref(false);
 let message = ref("");
-const imageUrl = ref();
-const imageFile = ref();
+let imageUrl = ref();
+let imageFile = ref();
+
+const actuId = route.params.id;
+
+function getActuality() {
+  ActualityService.get(actuId)
+    .then((response: ResponseData) => {
+      title.value = response.data.title;
+      description.value = response.data.description;
+      imageType.value = response.data.imageType;
+      imageBuffer.value = response.data.imageData.data;
+    })
+    .catch((e: Error) => {
+      console.log(e);
+    });
+}
+
+function displayIm(mimeType: any, buffer: any) {
+  let b64 = new Buffer(buffer).toString("base64");
+
+  const image = `data:${mimeType};base64,${b64}`;
+  return image;
+}
 
 const onFilePicked = (event: any) => {
   const files = event.target.files;
@@ -38,42 +62,67 @@ const onFilePicked = (event: any) => {
   imageFile.value = files[0];
 };
 
-function saveActuality(e: any) {
-  const formData = new FormData();
-  formData.append("title", title.value);
-  formData.append("description", description.value);
-  formData.append("file", imageFile.value);
-
-  // const config = {
-  //   headers: {
-  //     "Content-Type": "multipart/form-data",
-  //   },
-  // };
+function editActuality(e: any) {
   e.preventDefault();
 
-  ActualityService.create(formData)
-    .then((response: ResponseData) => {
-      // console.log(response);
-      if (response.data.actu.id) {
+  if (imageFile) {
+    const formData = new FormData();
+    formData.append("title", title.value);
+    formData.append("description", description.value);
+    formData.append("file", imageFile.value);
+
+    ActualityService.update(actuId, formData)
+      .then((response: ResponseData) => {
+        if (response.data.actu) {
+          Toast.fire({
+            icon: "success",
+            title: response.data.message,
+            position: "top-right",
+          });
+
+          router.push("/actualities-list");
+        }
+      })
+      .catch((e: Error) => {
         Toast.fire({
-          icon: "success",
-          title: response.data.message,
+          icon: "error",
+          title: "Une erreur s'est produite",
           position: "top-right",
         });
 
-        router.push("/actualities-list");
-      }
-    })
-    .catch((e: Error) => {
-      Toast.fire({
-        icon: "error",
-        title: "Une erreur s'est produite",
-        position: "top-right",
+        console.log(e);
       });
+  } else {
+    const formData = new FormData();
+    formData.append("title", title.value);
+    formData.append("description", description.value);
+    ActualityService.update(actuId, formData)
+      .then((response: ResponseData) => {
+        if (response.data.actu) {
+          Toast.fire({
+            icon: "success",
+            title: response.data.message,
+            position: "top-right",
+          });
 
-      console.log(e);
-    });
+          router.push("/actualities-list");
+        }
+      })
+      .catch((e: Error) => {
+        Toast.fire({
+          icon: "error",
+          title: "Une erreur s'est produite",
+          position: "top-right",
+        });
+
+        console.log(e);
+      });
+  }
 }
+
+onMounted(() => {
+  getActuality();
+});
 </script>
 
 <template>
@@ -100,9 +149,12 @@ function saveActuality(e: any) {
         >
           <div class="mt-4">
             <div class="p-6 bg-white rounded-md shadow-md">
-              <h2 class="text-lg font-semibold text-gray-700">Ajouter une actualité</h2>
+              <h2 class="text-lg font-semibold text-gray-700">Modifier une actualité</h2>
+              <div class="flex-shrink-0">
+                <img class="w-full" :src="displayIm(imageType, imageBuffer)" alt="" />
+              </div>
 
-              <form method="POST" enctype="multipart/form-data" @submit="saveActuality">
+              <form method="POST" enctype="multipart/form-data" @submit="editActuality">
                 <div class="">
                   <div>
                     <label class="text-gray-700" for="username"
@@ -139,14 +191,13 @@ function saveActuality(e: any) {
 
                   <div class="mt-4">
                     <label class="text-gray-700" for="password"
-                      >Image de couverture <span class="text-red-500">*</span></label
+                      >Changer l'image de couverture</label
                     >
                     <input
                       name="file"
                       class="w-full mt-2 border-gray-200 rounded-md border-gray-300 focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
                       type="file"
                       @change="onFilePicked"
-                      required
                     />
                     <ErrorMessage name="file" class="error-feedback text-red-500" />
                   </div>

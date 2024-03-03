@@ -9,7 +9,7 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import Toast from "../../plugins/Toast/Toast";
 
-import ActualityService from "../../services/actuality.service";
+import EventService from "../../services/event.service";
 import ResponseData from "../../types/ResponseData";
 
 // GLOBAL CONST
@@ -17,7 +17,7 @@ const router = useRouter();
 const route = useRoute();
 const store = useStore();
 
-let actualities = ref<any[]>([]);
+let events = ref<any[]>([]);
 let open = ref(false);
 
 function displayIm(mimeType: any, buffer: any) {
@@ -27,11 +27,11 @@ function displayIm(mimeType: any, buffer: any) {
   return image;
 }
 
-function getAllActualities() {
-  ActualityService.getAll()
+function getAllEvents() {
+  EventService.getAll()
     .then((response: ResponseData) => {
       // console.log(response.data);
-      actualities.value = response.data;
+      events.value = response.data;
     })
     .catch((e: Error) => {
       console.log(e);
@@ -39,11 +39,11 @@ function getAllActualities() {
 }
 
 function showActu(id: any) {
-  router.push({ name: "ActualityOne", params: { id: id } });
+  router.push({ name: "EventOne", params: { id: id } });
 }
 
 function editActu(id: any) {
-  router.push({ name: "ActualityEdit", params: { id: id } });
+  router.push({ name: "EventEdit", params: { id: id } });
 }
 
 function deleteActu() {
@@ -51,7 +51,7 @@ function deleteActu() {
 }
 
 function confirmDeletion(id: any) {
-  ActualityService.delete(id)
+  EventService.delete(id)
     .then((response: ResponseData) => {
       Toast.fire({
         icon: "success",
@@ -60,7 +60,7 @@ function confirmDeletion(id: any) {
       });
 
       open.value = false;
-      getAllActualities();
+      getAllEvents();
     })
     .catch((e: Error) => {
       Toast.fire({
@@ -72,18 +72,17 @@ function confirmDeletion(id: any) {
       console.log(e);
     });
 }
+
 onMounted(() => {
-  getAllActualities();
+  getAllEvents();
 });
 </script>
 
 <template>
   <div>
     <div class="flex justify-between">
-      <h3 class="text-3xl font-medium text-gray-700">
-        Actualités ({{ actualities.length }})
-      </h3>
-      <router-link to="/add-actuality" class="flaot-right">Ajouter</router-link>
+      <h3 class="text-3xl font-medium text-gray-700">Evénements ({{ events.length }})</h3>
+      <router-link to="/add-event" class="flaot-right">Ajouter</router-link>
     </div>
     <div class="flex flex-col mt-8">
       <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -104,6 +103,11 @@ onMounted(() => {
                   Description
                 </th>
                 <th
+                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
+                >
+                  Date
+                </th>
+                <th
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-right text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
                 >
                   Actions
@@ -112,20 +116,20 @@ onMounted(() => {
             </thead>
 
             <tbody class="bg-white">
-              <tr v-for="(actu, index) in actualities" :key="index">
+              <tr v-for="(event, index) in events" :key="index">
                 <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="flex-shrink-0 w-10 h-10">
                       <img
                         class="w-10 h-10 rounded-full"
-                        :src="displayIm(actu.imageType, actu.imageData.data)"
+                        :src="displayIm(event.imageType, event.imageData.data)"
                         alt=""
                       />
                     </div>
 
                     <div class="ml-4">
                       <div class="text-sm font-medium leading-5 text-gray-900">
-                        {{ actu.title }}
+                        {{ event.title }}
                       </div>
                     </div>
                   </div>
@@ -133,7 +137,13 @@ onMounted(() => {
 
                 <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">
                   <div class="text-sm leading-5 text-gray-900">
-                    {{ actu.description.substr(0, 100) + "..." }}
+                    {{ event.description.substr(0, 100) + "..." }}
+                  </div>
+                </td>
+
+                <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">
+                  <div class="text-sm leading-5 text-gray-900">
+                    {{ event.eventDate }}
                   </div>
                 </td>
 
@@ -141,7 +151,7 @@ onMounted(() => {
                   class="px-6 py-4 text-sm font-medium leading-5 text-right border-b border-gray-200 whitespace-nowrap"
                 >
                   <button
-                    @click="showActu(actu.id)"
+                    @click="showActu(event.id)"
                     class="text-indigo-600 hover:text-indigo-900"
                   >
                     <i class="fa fa-edit"></i>
@@ -149,7 +159,7 @@ onMounted(() => {
                   </button>
                   &nbsp;
                   <button
-                    @click="editActu(actu.id)"
+                    @click="editActu(event.id)"
                     class="text-indigo-600 hover:text-indigo-900"
                   >
                     <i class="fa fa-edit"></i>
@@ -198,7 +208,7 @@ onMounted(() => {
                     <div class="px-6 py-4 text-left modal-content">
                       <!-- Title -->
                       <div class="flex items-center justify-between pb-3">
-                        <p class="text-2xl font-bold">Supression d'une actualité</p>
+                        <p class="text-2xl font-bold">Supression d'un événement</p>
                         <div
                           class="z-50 cursor-pointer modal-close"
                           @click="open = false"
@@ -230,7 +240,7 @@ onMounted(() => {
                         </button>
                         <button
                           class="px-6 py-3 font-medium tracking-wide text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none"
-                          @click="confirmDeletion(actu.id)"
+                          @click="confirmDeletion(event.id)"
                         >
                           Confirmer
                         </button>

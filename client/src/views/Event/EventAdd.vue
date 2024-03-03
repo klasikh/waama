@@ -9,7 +9,7 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import Toast from "../../plugins/Toast/Toast";
 
-import ActualityService from "../../services/actuality.service";
+import EventService from "../../services/event.service";
 import ResponseData from "../../types/ResponseData";
 
 // GLOBAL CONST
@@ -22,6 +22,7 @@ const actionLogin = (login: any) => store.dispatch("auth/login", login);
 
 const title = ref("");
 const description = ref("");
+const eventDate = ref("");
 let loading = ref(false);
 let message = ref("");
 const imageUrl = ref();
@@ -38,10 +39,11 @@ const onFilePicked = (event: any) => {
   imageFile.value = files[0];
 };
 
-function saveActuality(e: any) {
+function saveEvent(e: any) {
   const formData = new FormData();
   formData.append("title", title.value);
   formData.append("description", description.value);
+  formData.append("eventDate", eventDate.value);
   formData.append("file", imageFile.value);
 
   // const config = {
@@ -51,7 +53,7 @@ function saveActuality(e: any) {
   // };
   e.preventDefault();
 
-  ActualityService.create(formData)
+  EventService.create(formData)
     .then((response: ResponseData) => {
       // console.log(response);
       if (response.data.actu.id) {
@@ -61,7 +63,7 @@ function saveActuality(e: any) {
           position: "top-right",
         });
 
-        router.push("/actualities-list");
+        router.push("/events-list");
       }
     })
     .catch((e: Error) => {
@@ -79,9 +81,9 @@ function saveActuality(e: any) {
 <template>
   <div>
     <div class="flex justify-between">
-      <h3 class="text-3xl font-medium text-gray-700">Actualités</h3>
-      <router-link to="/actualities-list" class="flaot-right"
-        >Liste des actualités</router-link
+      <h3 class="text-3xl font-medium text-gray-700">Evénements</h3>
+      <router-link to="/events-list" class="flaot-right"
+        >Liste des événements</router-link
       >
     </div>
     <div class="flex flex-col mt-8">
@@ -100,10 +102,24 @@ function saveActuality(e: any) {
         >
           <div class="mt-4">
             <div class="p-6 bg-white rounded-md shadow-md">
-              <h2 class="text-lg font-semibold text-gray-700">Ajouter une actualité</h2>
+              <h2 class="text-lg font-semibold text-gray-700">Ajouter un événement</h2>
 
-              <form method="POST" enctype="multipart/form-data" @submit="saveActuality">
+              <form method="POST" enctype="multipart/form-data" @submit="saveEvent">
                 <div class="">
+                  <div>
+                    <label class="text-gray-700" for="username"
+                      >Date de l'événement <span class="text-red-500">*</span></label
+                    >
+                    <input
+                      name="eventDate"
+                      v-model="eventDate"
+                      class="w-full mt-2 border-gray-200 rounded-md border-gray-300 focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
+                      type="date"
+                      required
+                    />
+                    <ErrorMessage name="eventDate" class="error-feedback text-red-500" />
+                  </div>
+
                   <div>
                     <label class="text-gray-700" for="username"
                       >Titre <span class="text-red-500">*</span></label

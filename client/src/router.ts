@@ -14,6 +14,7 @@ import Blank from '@/views/Blank.vue'
 import Home from "@/views/Home.vue";
 import Biblio from "@/views/Biblio.vue";
 import Calendar from "@/views/Calendar.vue";
+import Event from "@/views/Event.vue";
 
 import Actuality from "@/views/Actuality.vue";
 import ActualitiesList from "@/views/Actuality/ActualitiesList.vue";
@@ -56,8 +57,8 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: "/calendar",
-    name: "Calendar",
-    component: Calendar,
+    name: "Event",
+    component: Event,
     meta: { 
       layout: 'frontOffice',
       title: "Calendrier",

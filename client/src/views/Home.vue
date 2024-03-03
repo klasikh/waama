@@ -370,27 +370,14 @@
 </template>
 
 <script setup lang="ts">
-import UserService from "@/services/user.service";
-import Hero1 from "@/assets/images/hero1.png";
-import Hero2 from "@/assets/images/hero2.png";
-import HeroMask from "@/assets/images/hero-mask.png";
-import Culture from "@/assets/images/culture.png";
-import Festi1 from "@/assets/images/festi1.png";
-import Festi2 from "@/assets/images/festi2.png";
-import Promoteur from "@/assets/images/promoteur.png";
-
-//   UserService.getPublicContent().then(
-//     (response) => {
-//       this.content = response.data;
-//     },
-//     (error) => {
-//       this.content =
-//         (error.response && error.response.data && error.response.data.message) ||
-//         error.message ||
-//         error.toString();
-//     }
-//   );
-// },
+import UserService from "../services/user.service";
+import Hero1 from "../assets/images/hero1.png";
+import Hero2 from "../assets/images/hero2.png";
+import HeroMask from "../assets/images/hero-mask.png";
+import Culture from "../assets/images/culture.png";
+import Festi1 from "../assets/images/festi1.png";
+import Festi2 from "../assets/images/festi2.png";
+import Promoteur from "../assets/images/promoteur.png";
 </script>
 <style scoped>
 .hero-mask {

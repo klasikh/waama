@@ -1,5 +1,33 @@
 <script setup lang="ts">
-import Culture from "@/assets/images/culture.png";
+import { computed, onMounted, reactive, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+
+import ActualityService from "../services/actuality.service";
+import ResponseData from "../types/ResponseData";
+
+let actualities = ref<any[]>([]);
+
+function displayIm(mimeType: any, buffer: any) {
+  let b64 = new Buffer(buffer).toString("base64");
+
+  const image = `data:${mimeType};base64,${b64}`;
+  return image;
+}
+
+function getAllActualities() {
+  ActualityService.getAll()
+    .then((response: ResponseData) => {
+      // console.log(response.data);
+      actualities.value = response.data;
+    })
+    .catch((e: Error) => {
+      console.log(e);
+    });
+}
+
+onMounted(() => {
+  getAllActualities();
+});
 </script>
 
 <template>
@@ -38,21 +66,28 @@ import Culture from "@/assets/images/culture.png";
         class="gap-16 items-center py-2 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-3 lg:py-16 lg:px-6 mt-4"
       >
         <div
-          class="max-w-sm bg-white border border-gray-200 rounded-lg shadow md:mx-auto md:mb-5"
+          class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-xl md:mx-auto md:mb-5"
+          v-for="(actu, index) in actualities"
+          :key="index"
         >
           <a href="#">
-            <img class="rounded-t-lg" :src="Culture" alt="" />
+            <img
+              class="w-full rounded-t-lg"
+              :src="displayIm(actu.imageType, actu.imageData.data)"
+              style="width: 100%; height: 240px"
+              alt=""
+            />
           </a>
           <div class="p-5">
             <a href="#">
               <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                Waama Danse
+                {{ actu.title }}
               </h5>
             </a>
             <p class="mb-3 font-normal text-gray-700">
-              Here are the biggest enterprise technology acquisitions of 2021 so far, in
-              reverse chronological order.
+              {{ actu.description.substr(0, 100) + "..." }}
             </p>
+            <hr />
             <div class="">
               <router-link
                 to="#"
@@ -76,36 +111,6 @@ import Culture from "@/assets/images/culture.png";
                 </svg>
               </router-link>
             </div>
-          </div>
-        </div>
-
-        <div
-          class="max-w-sm bg-white border border-gray-200 rounded-lg shadow md:mx-auto md:mb-5"
-        >
-          <a href="#">
-            <img class="rounded-t-lg" :src="Culture" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                Noteworthy technology acquisitions 2021
-              </h5>
-            </a>
-          </div>
-        </div>
-
-        <div
-          class="max-w-sm bg-white border border-gray-200 rounded-lg shadow md:mx-auto md:mb-5"
-        >
-          <a href="#">
-            <img class="rounded-t-lg" :src="Culture" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                Noteworthy technology acquisitions 2021
-              </h5>
-            </a>
           </div>
         </div>
       </div>

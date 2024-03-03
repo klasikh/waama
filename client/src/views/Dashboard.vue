@@ -7,12 +7,12 @@ import { useRoute, useRouter } from "vue-router";
 import { mapGetters, mapState, useStore } from "vuex";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
-import Toast from "@/plugins/Toast/Toast";
+import Toast from "../plugins/Toast/Toast";
 
-import ActualityService from "@/services/actuality.service";
-import CadreService from "@/services/cadre.service";
-import EventService from "@/services/event.service";
-import ResponseData from "@/types/ResponseData";
+import ActualityService from "../services/actuality.service";
+import CadreService from "../services/cadre.service";
+import EventService from "../services/event.service";
+import ResponseData from "../types/ResponseData";
 
 // GLOBAL CONST
 const router = useRouter();
