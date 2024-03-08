@@ -144,8 +144,7 @@ onMounted(() => {
                     @click="showActu(actu.id)"
                     class="text-indigo-600 hover:text-indigo-900"
                   >
-                    <i class="fa fa-edit"></i>
-                    Voir
+                    <i class="fa fa-eye"></i>
                   </button>
                   &nbsp;
                   <button
@@ -153,15 +152,13 @@ onMounted(() => {
                     class="text-indigo-600 hover:text-indigo-900"
                   >
                     <i class="fa fa-edit"></i>
-                    Modifier
                   </button>
                   &nbsp;
                   <button
                     @click="deleteActu()"
                     class="text-indigo-600 hover:text-indigo-900"
                   >
-                    <i class="fa fa-edit"></i>
-                    Supprimer
+                    <i class="fa fa-trash"></i>
                   </button>
                 </td>
                 <div

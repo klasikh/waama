@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="my-20">
+  <div class="my-20 mx-20" style="margin-top: 130px">
     <section>
       <div class="col col-4">
         <input

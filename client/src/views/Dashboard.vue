@@ -250,8 +250,7 @@ onMounted(() => {
                     @click="showCadre(cadre.id)"
                     class="text-indigo-600 hover:text-indigo-900"
                   >
-                    <i class="fa fa-edit"></i>
-                    Voir
+                    <i class="fa fa-eye"></i>
                   </button>
                 </td>
               </tr>

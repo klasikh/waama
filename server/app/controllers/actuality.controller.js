@@ -43,7 +43,12 @@ exports.create = (req, res, next) => {
 exports.findAll = (req, res) => {
   // const title = req.query.title;
 
-  Actuality.findAll().then(response => {
+  Actuality.findAll({
+    order: [
+      ['id', 'DESC'],
+      ['title', 'ASC'],
+    ],
+  }).then(response => {
     // console.log(response)
     if (response) {
       res.send(response);

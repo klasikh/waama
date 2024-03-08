@@ -22,7 +22,7 @@ const actionLogin = (login: any) => store.dispatch("auth/login", login);
 
 let title = ref("");
 let description = ref("");
-let eventDate = ref("");
+let date = ref("");
 let imageType = ref("");
 let imageBuffer = ref("");
 let loading = ref(false);
@@ -37,7 +37,7 @@ function getEvent() {
     .then((response: ResponseData) => {
       title.value = response.data.title;
       description.value = response.data.description;
-      eventDate.value = response.data.eventDate;
+      date.value = response.data.date;
       imageType.value = response.data.imageType;
       imageBuffer.value = response.data.imageData.data;
     })
@@ -71,7 +71,7 @@ function editEvent(e: any) {
     const formData = new FormData();
     formData.append("title", title.value);
     formData.append("description", description.value);
-    formData.append("eventDate", eventDate.value);
+    formData.append("date", date.value);
     formData.append("file", imageFile.value);
 
     EventService.update(actuId, formData)
@@ -83,7 +83,7 @@ function editEvent(e: any) {
             position: "top-right",
           });
 
-          router.push("/actualities-list");
+          router.push("/events-list");
         }
       })
       .catch((e: Error) => {
@@ -99,7 +99,7 @@ function editEvent(e: any) {
     const formData = new FormData();
     formData.append("title", title.value);
     formData.append("description", description.value);
-    formData.append("eventDate", eventDate.value);
+    formData.append("date", date.value);
     EventService.update(actuId, formData)
       .then((response: ResponseData) => {
         if (response.data.actu) {
@@ -165,13 +165,13 @@ onMounted(() => {
                       >Date de l'événement <span class="text-red-500">*</span></label
                     >
                     <input
-                      name="eventDate"
-                      v-model="eventDate"
+                      name="date"
+                      v-model="date"
                       class="w-full mt-2 border-gray-200 rounded-md border-gray-300 focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
                       type="date"
                       required
                     />
-                    <ErrorMessage name="eventDate" class="error-feedback text-red-500" />
+                    <ErrorMessage name="date" class="error-feedback text-red-500" />
                   </div>
 
                   <div>

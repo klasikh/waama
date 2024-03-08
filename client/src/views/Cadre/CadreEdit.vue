@@ -80,7 +80,7 @@ function editCadre(e: any) {
             position: "top-right",
           });
 
-          router.push("/actualities-list");
+          router.push("/cadres-list");
         }
       })
       .catch((e: Error) => {

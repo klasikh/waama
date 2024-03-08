@@ -43,7 +43,11 @@ exports.create = (req, res, next) => {
 exports.findAll = (req, res) => {
   // const name = req.query.name;
 
-  Cadre.findAll().then(response => {
+  Cadre.findAll({
+    order: [
+      ['name', 'ASC'],
+    ],
+  }).then(response => {
     // console.log(response)
     if (response) {
       res.send(response);

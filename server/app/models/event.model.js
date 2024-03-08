@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
     description: {
       type: Sequelize.STRING
     },
-    eventDate: {
+    date: {
       type: Sequelize.STRING
     },
     imageType: {

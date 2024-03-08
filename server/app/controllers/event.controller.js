@@ -18,7 +18,7 @@ exports.create = (req, res, next) => {
   Event.create({
     title: req.body.title,
     description: req.body.description,
-    eventDate: req.body.eventDate,
+    date: req.body.date,
     imageType: req.file.mimetype,
     imageName: req.file.originalname,
     imageData: fs.readFileSync(
@@ -44,7 +44,12 @@ exports.create = (req, res, next) => {
 exports.findAll = (req, res) => {
   // const title = req.query.title;
 
-  Event.findAll().then(response => {
+  Event.findAll({
+    order: [
+      ['id', 'DESC'],
+      ['title', 'ASC'],
+    ],
+  }).then(response => {
     // console.log(response)
     if (response) {
       res.send(response);
@@ -100,7 +105,7 @@ exports.update = (req, res) => {
     Event.update({
       title: req.body.title,
       description: req.body.description,
-      eventDate: req.body.eventDate,
+      date: req.body.date,
       imageType: req.file.mimetype,
       imageName: req.file.originalname,
       imageData: fs.readFileSync(

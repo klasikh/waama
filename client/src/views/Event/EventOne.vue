@@ -22,7 +22,7 @@ const actionLogin = (login: any) => store.dispatch("auth/login", login);
 
 let title = ref("");
 let description = ref("");
-let eventDate = ref("");
+let date = ref("");
 let imageType = ref("");
 let imageBuffer = ref("");
 let loading = ref(false);
@@ -35,7 +35,7 @@ function getEvent() {
     .then((response: ResponseData) => {
       title.value = response.data.title;
       description.value = response.data.description;
-      eventDate.value = response.data.eventDate;
+      date.value = response.data.date;
       imageType.value = response.data.imageType;
       imageBuffer.value = response.data.imageData.data;
     })
@@ -91,7 +91,7 @@ onMounted(() => {
                       {{ title }}
                     </div>
                     <div class="mb-2 text-xl font-bold text-gray-900">
-                      {{ eventDate }}
+                      {{ date }}
                     </div>
                     <p class="text-base text-gray-700">
                       {{ description }}

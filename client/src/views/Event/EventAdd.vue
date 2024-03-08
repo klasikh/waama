@@ -22,7 +22,7 @@ const actionLogin = (login: any) => store.dispatch("auth/login", login);
 
 const title = ref("");
 const description = ref("");
-const eventDate = ref("");
+const date = ref("");
 let loading = ref(false);
 let message = ref("");
 const imageUrl = ref();
@@ -43,7 +43,7 @@ function saveEvent(e: any) {
   const formData = new FormData();
   formData.append("title", title.value);
   formData.append("description", description.value);
-  formData.append("eventDate", eventDate.value);
+  formData.append("date", date.value);
   formData.append("file", imageFile.value);
 
   // const config = {
@@ -111,13 +111,13 @@ function saveEvent(e: any) {
                       >Date de l'événement <span class="text-red-500">*</span></label
                     >
                     <input
-                      name="eventDate"
-                      v-model="eventDate"
+                      name="date"
+                      v-model="date"
                       class="w-full mt-2 border-gray-200 rounded-md border-gray-300 focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
                       type="date"
                       required
                     />
-                    <ErrorMessage name="eventDate" class="error-feedback text-red-500" />
+                    <ErrorMessage name="date" class="error-feedback text-red-500" />
                   </div>
 
                   <div>

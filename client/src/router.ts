@@ -25,6 +25,7 @@ import ActualityEdit from "@/views/Actuality/ActualityEdit.vue";
 import EventsList from "@/views/Event/EventsList.vue";
 import EventAdd from "@/views/Event/EventAdd.vue";
 import EventOne from "@/views/Event/EventOne.vue";
+import EventFrontShow from "@/views/Event/EventFrontShow.vue";
 import EventEdit from "@/views/Event/EventEdit.vue";
 
 import CadresList from "@/views/Cadre/CadresList.vue";
@@ -56,7 +57,7 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
-    path: "/calendar",
+    path: "/events",
     name: "Event",
     component: Event,
     meta: { 
@@ -177,6 +178,16 @@ const routes: RouteRecordRaw[] = [
     props: true,
     meta: { 
       title: "Office - Edition d'un événement",
+      requiredAuth: true 
+    },
+  },
+  {
+    path: '/event/:id',
+    name: 'EventFrontShow',
+    component: EventFrontShow,
+    props: true,
+    meta: { 
+      title: "Office - Affichage d'une événement",
       requiredAuth: true 
     },
   },

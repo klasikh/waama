@@ -2,22 +2,25 @@
 import { ref } from "vue";
 
 const activeClass = ref(
-  "block py-2 pr-4 pl-3 text-[#F71735] border-b border-gray-100 hover:bg-gray-50 lg:border-0 lg:hover:text-primary-700 lg:p-0"
+  "block py-2 pr-4 pl-3 text-[#F71735] text-xl border-b hover:text-gray-300 lg:border-0 lg:p-0"
 );
 const inactiveClass = ref(
-  "block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:border-0 lg:hover:text-primary-700 lg:p-0"
+  "block py-2 pr-4 pl-3 text-white text-xl border-b hover:text-gray-300 lg:border-0 lg:p-0"
 );
 </script>
 
 <template>
   <div>
     <header>
-      <nav class="bg-white border-gray-200 px-4 lg:px-6 py-5">
+      <nav
+        class="shadow-lg fixed w-full top-0 left-0 bg-[#FF9F1C] scroll:bg-white border-gray-200 px-4 lg:px-6 py-5"
+        style="z-index: 9999"
+      >
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <router-link to="/" class="flex items-center">
             <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" /> -->
             <span
-              class="self-center text-xl font-semibold whitespace-nowrap uppercase font-bold text-3xl text-[#F71735]"
+              class="self-center text-3xl font-bold whitespace-nowrap uppercase font-bold text-3xl text-[#F71735]"
               >Waama</span
             >
           </router-link>
@@ -58,8 +61,13 @@ const inactiveClass = ref(
               </svg>
             </button>
           </div>
-          <div class="hidden w-full lg:flex lg:w-auto float-right" id="mobile-menu-2">
-            <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+          <div
+            class="hidden w-full lg:flex lg:w-auto float-right right-0"
+            id="mobile-menu-2"
+          >
+            <ul
+              class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0 float-right right-0"
+            >
               <li>
                 <router-link
                   to="/actuality"
@@ -69,8 +77,8 @@ const inactiveClass = ref(
               </li>
               <li>
                 <router-link
-                  to="/calendar"
-                  :class="[$route.name === 'Calendar' ? activeClass : inactiveClass]"
+                  to="/events"
+                  :class="[$route.name === 'Event' ? activeClass : inactiveClass]"
                   >Calendrier evènementiel</router-link
                 >
               </li>
@@ -103,7 +111,7 @@ const inactiveClass = ref(
       </nav>
     </header>
 
-    <div class="">
+    <div class="mt-20">
       <slot />
     </div>
 
@@ -118,16 +126,22 @@ const inactiveClass = ref(
           class="flex flex-wrap items-center mt-3 text-sm font-medium text-white sm:mt-0"
         >
           <li>
-            <a href="#" class="hover:underline me-4 md:me-6">Actualités</a>
+            <router-link to="/actuality" class="hover:underline me-4 md:me-6"
+              >Actualités</router-link
+            >
           </li>
           <li>
-            <a href="#" class="hover:underline me-4 md:me-6">Calendrier</a>
+            <router-link to="/events" class="hover:underline me-4 md:me-6"
+              >Calendrier</router-link
+            >
           </li>
           <li>
-            <a href="#" class="hover:underline me-4 md:me-6">Bibliothèque</a>
+            <router-link to="/biblio" class="hover:underline me-4 md:me-6"
+              >Bibliothèque</router-link
+            >
           </li>
           <li>
-            <a href="#" class="hover:underline">Contact</a>
+            <router-link to="/contact" class="hover:underline">Contact</router-link>
           </li>
         </ul>
         <div class="sm:flex sm:items-center sm:justify-between">

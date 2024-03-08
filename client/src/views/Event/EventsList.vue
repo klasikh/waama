@@ -143,7 +143,7 @@ onMounted(() => {
 
                 <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">
                   <div class="text-sm leading-5 text-gray-900">
-                    {{ event.eventDate }}
+                    {{ event.date }}
                   </div>
                 </td>
 
@@ -154,8 +154,7 @@ onMounted(() => {
                     @click="showActu(event.id)"
                     class="text-indigo-600 hover:text-indigo-900"
                   >
-                    <i class="fa fa-edit"></i>
-                    Voir
+                    <i class="fa fa-eye"></i>
                   </button>
                   &nbsp;
                   <button
@@ -163,15 +162,13 @@ onMounted(() => {
                     class="text-indigo-600 hover:text-indigo-900"
                   >
                     <i class="fa fa-edit"></i>
-                    Modifier
                   </button>
                   &nbsp;
                   <button
                     @click="deleteActu()"
                     class="text-indigo-600 hover:text-indigo-900"
                   >
-                    <i class="fa fa-edit"></i>
-                    Supprimer
+                    <i class="fa fa-trash"></i>
                   </button>
                 </td>
                 <div

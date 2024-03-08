@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:5173",
+  origin: ["http://localhost:5173", "https://www.waamadambu.bj"],
   credentials: true,
 };
 
@@ -38,6 +38,7 @@ require('./app/routes/user.routes')(app);
 require('./app/routes/actuality.routes')(app);
 require('./app/routes/event.routes')(app);
 require('./app/routes/cadre.routes')(app);
+require('./app/routes/newsletter.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080; 

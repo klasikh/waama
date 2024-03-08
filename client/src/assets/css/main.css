@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track{
+  background: #2D3748;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #CBD5E0;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background: #718096;
+}
+
+.carousel.dragging .card {
+  cursor: grab;
+  user-select: none;
+}
+:where(.card, .img) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  scroll-snap-align: start;
+  height: 342px;
+  list-style: none;
+  background: #fff;
+  cursor: pointer;
+  padding-bottom: 15px;
+  flex-direction: column;
+  border-radius: 8px;
+}
+.card .img {
+  background: #F71735;
+  height: 148px;
+  width: 148px;
+  border-radius: 50%;
+}
+.card .img img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+}
+.card h2 {
+  font-weight: 500;
+  font-size: 1.56rem;
+  margin: 30px 0 5px;
+}
+.card span {
+  color: #6A6D78;
+  font-size: 1.31rem;
+}

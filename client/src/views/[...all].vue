@@ -21,7 +21,7 @@ function login() {
             <span class="text-red-500">Oops!</span> Page introuvable
           </p>
           <p class="mb-8 text-center text-gray-500 md:text-lg">
-            Cette est introuvable ou n'existe pas.
+            Cette page est introuvable ou n'existe pas.
           </p>
           <router-link
             to="/"

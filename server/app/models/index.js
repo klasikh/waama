@@ -29,6 +29,7 @@ db.actuality = require("../models/actuality.model.js")(sequelize, Sequelize);
 // db.calendar = require("../models/calendar.model.js")(sequelize, Sequelize);
 db.cadre = require("../models/cadre.model.js")(sequelize, Sequelize);
 db.event = require("../models/event.model.js")(sequelize, Sequelize);
+db.newsletter = require("../models/newsletter.model.js")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
   through: "user_roles"
