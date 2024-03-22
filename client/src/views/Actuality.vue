@@ -7,7 +7,7 @@ import ResponseData from "../types/ResponseData";
 
 let actualities = ref<any[]>([]);
 let loadingActus = ref(false);
-let paginate = ref(["languages"]);
+// let paginate = ref(["languages"]);
 
 function displayIm(mimeType: any, buffer: any) {
   let b64 = new Buffer(buffer).toString("base64");
@@ -65,14 +65,14 @@ onMounted(() => {
         </div>
         <p class="mb-4 text-justify">Ici nous vous présentons toutes nos actualités</p>
       </div>
-      <div class="">
+      <!-- <div class="">
         <paginate name="languages" :list="actualities" :per="2">
           <li v-for="lang in paginated('languages')" :key="lang">
             {{ lang + " ifif" }}
           </li>
           <p>Toto est au cours...</p>
         </paginate>
-      </div>
+      </div> -->
       <div class="flex flex-wrap justify-center" v-if="loadingActus">
         <img
           class="text-center items-center h-24"

@@ -8,8 +8,8 @@ export default defineConfig({
   define: {
     'process.env': {
       APP_MODE: 'dev',
-      BACKEND_URL: 'http://localhost:8080/api',
-      // BACKEND_URL: 'https://tfu-server.onrender.com/',
+      // BACKEND_URL: 'http://localhost:8080/api',
+      BACKEND_URL: 'https://waama.onrender.com/',
     }
   },
   resolve: {

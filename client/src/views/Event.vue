@@ -11,7 +11,7 @@ import TimeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import allLocales from "@fullcalendar/core/locales-all";
 
-import TableLite from "vue3-table-lite";
+// import TableLite from "vue3-table-lite";
 
 // GLOBAL CONST
 const router = useRouter();
@@ -22,11 +22,21 @@ function handleDateClick(arg: any) {
   alert("date click! " + arg.dateStr);
 }
 
-let calendarOptions = {
+let calendarOptions = reactive<{
+  plugins: any;
+  initialView: any;
+  events: any;
+  timeZone: any;
+  dayMaxEvents: any;
+  locales: any;
+  locale: any;
+  eventTimeFormat: any;
+  headerToolbar: any;
+}>({
   plugins: [dayGridPlugin, TimeGridPlugin, interactionPlugin],
   initialView: "dayGridMonth",
   // dateClick: handleDateClick,
-  events,
+  events: ref<any[]>([]),
   timeZone: "UTC",
   dayMaxEvents: true,
   locales: allLocales,
@@ -43,7 +53,7 @@ let calendarOptions = {
     center: "title",
     right: "timeGridDay timeGridWeek dayGridMonth",
   },
-};
+});
 
 const table = reactive({
   isLoading: false,
@@ -105,6 +115,8 @@ const table = reactive({
       },
     },
   ],
+  rows: ref<any[]>([]),
+  totalRecordCount: ref(0),
   sortable: {
     order: "title",
     sort: "asc",
@@ -288,7 +300,6 @@ onMounted(() => {
           :rowClasses="table.rowClasses"
           :total="table.totalRecordCount"
           :messages="table.messages"
-          @do-search="doSearch"
           @is-finished="table.isLoading = false"
         />
       </div>

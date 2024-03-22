@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from './plugins/font-awesome'
 import DashboardLayout from '@/components/DashboardLayout.vue'
 import EmptyLayout from '@/components/EmptyLayout.vue'
 import FrontOfficeLayout from '@/components/FrontOfficeLayout.vue'
-import VuePaginate from 'vue-paginate'
+// import VuePaginate from 'vue-paginate'
 
 const app = createApp(App)
 
@@ -24,5 +24,5 @@ app.component('FrontOfficeLayout', FrontOfficeLayout)
 app.use(router)
 app.use(store)
 app.component("font-awesome-icon", FontAwesomeIcon)
-app.use(VuePaginate)
+// app.use(VuePaginate)
 app.mount('#app')
